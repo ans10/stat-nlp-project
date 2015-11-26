@@ -22,10 +22,12 @@ def review_extractor(reviewcsvfile,business_list):
         for row in reviewreader:
             if row[4] in business_list:
                 temp_list = []
-                temp_list.append(row[0])
-                temp_list.append(row[1])
-                temp_list.append(row[2])
-                temp_list.append(row[6])
+                temp_list.append(row[0]) #userid
+                temp_list.append(row[1]) #reviewid
+                temp_list.append(row[2]) #text
+                temp_list.append(row[4]) #business_id
+                temp_list.append(row[6]) #ratings
+                ## row[0] corresponds to user id, review id, review, business id and rating
                 review_list.append(temp_list)
     return review_list
 def extract_ratingwise_reviews(reviews):
@@ -35,15 +37,15 @@ def extract_ratingwise_reviews(reviews):
     rating4 = []
     rating5 = []
     for each_review in reviews:
-        if each_review[3] is '1':
+        if each_review[4] is '1':
             rating1.append(each_review)
-        elif each_review[3] is '2':
+        elif each_review[4] is '2':
             rating2.append(each_review)
-        elif each_review[3] is '3':
+        elif each_review[4] is '3':
             rating3.append(each_review)
-        elif each_review[3] is '4':
+        elif each_review[4] is '4':
             rating4.append(each_review)
-        elif each_review[3] is '5':
+        elif each_review[4] is '5':
             rating5.append(each_review)
     return [rating1,rating2,rating3,rating4,rating5]
 
